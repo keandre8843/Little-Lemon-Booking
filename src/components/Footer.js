@@ -1,9 +1,13 @@
 import React from 'react';
+import image from '../assets/MarioandAdrian.jpg';
 
 function Footer() {
   return (
     <footer className="site-footer">
       <div className="footer-content">
+        <div className="footer-logo">
+          <img src={image} alt="Mario and Adrian, the founders of Little Lemon Restaurant" />
+        </div>
         <div className="footer-section">
           <h3>Doormat Navigation</h3>
           <ul>
