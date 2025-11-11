@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import heroImg from '../assets/restauranfood.jpg';
 
 function Hero({img}) {
@@ -13,9 +14,9 @@ function Hero({img}) {
           <p className="hero-copy">
             We are a family owned Mediterranean restaurant, focused on traditional recipes served with a modern twist.
           </p>
-          <button className="btn btn-primary" aria-label="Reserve a table">
+          <Link to="/booking" className="btn btn-primary" aria-label="Reserve a table">
             Reserve a Table
-          </button>
+          </Link>
         </div>
 
         <div className="hero-right">

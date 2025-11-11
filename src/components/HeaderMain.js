@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../assets/littlelemonlogo.jpg';
 
 function HeaderMain() {
@@ -28,12 +29,12 @@ function HeaderMain() {
 
         <nav className={`nav-menu ${isMenuOpen ? 'active' : ''}`} aria-label="Primary navigation">
           <ul>
-            <li><a href="/" onClick={toggleMenu}>Home</a></li>
-            <li><a href="/about" onClick={toggleMenu}>About</a></li>
-            <li><a href="/menu" onClick={toggleMenu}>Menu</a></li>
-            <li><a href="/reservations" onClick={toggleMenu}>Reservations</a></li>
-            <li><a href="/order-online" onClick={toggleMenu}>Order Online</a></li>
-            <li><a href="/login" onClick={toggleMenu}>Login</a></li>
+            <li><Link to="/" onClick={toggleMenu}>Home</Link></li>
+            <li><Link to="/about" onClick={toggleMenu}>About</Link></li>
+            <li><Link to="/menu" onClick={toggleMenu}>Menu</Link></li>
+            <li><Link to="/booking" onClick={toggleMenu}>Reservations</Link></li>
+            <li><Link to="/order-online" onClick={toggleMenu}>Order Online</Link></li>
+            <li><Link to="/login" onClick={toggleMenu}>Login</Link></li>
           </ul>
         </nav>
       </div>
