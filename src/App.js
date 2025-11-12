@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import HeaderMain from './components/HeaderMain';
 import HomePage from './components/HomePage';
-import BookingPage from './components/BookingPage';
+import Main from './components/Main';
+import ConfirmedBooking from './components/ConfirmedBooking';
 import Footer from './components/Footer';
 
 function App() {
@@ -11,12 +12,11 @@ function App() {
     <Router>
       <div className="App">
         <HeaderMain />
-        <main>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/booking" element={<BookingPage />} />
-          </Routes>
-        </main>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/booking" element={<Main />} />
+          <Route path="/confirmed" element={<ConfirmedBooking />} />
+        </Routes>
         <Footer />
       </div>
     </Router>
