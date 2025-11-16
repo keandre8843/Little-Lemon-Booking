@@ -9,27 +9,23 @@ function Card({ img, title, price, text, link, id }) {
   const navigate = useNavigate();
   const { addToCart } = useCart();
   const toast = useToast();
-
-  // Extract numeric price from string (e.g., "$12.99" → 12.99)
   const numericPrice = parseFloat(price.replace('$', ''));
 
   // Handle card click - navigate to menu
   const handleCardClick = (e) => {
-    // Don't navigate if clicking the order button
     if (e.target.closest('.order-link')) {
       return;
     }
     navigate('/menu');
   };
 
-  // Handle "Order for Delivery" click
   const handleOrderClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
 
     // Add to cart
     addToCart({
-      id: id || title, // Use id if provided, fallback to title
+      id: id || title,
       name: title,
       price: numericPrice,
       image: img,

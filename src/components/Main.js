@@ -4,13 +4,11 @@ import BookingPage from './BookingPage';
 import { fetchAPI, submitAPI } from '../api';
 import { useToast } from './ToastProvider';
 
-// Initialize times using fetchAPI for today's date
 export function initializeTimes() {
   const today = new Date();
   return fetchAPI(today);
 }
 
-// Update times using fetchAPI based on selected date
 export function updateTimes(state, action) {
   switch(action.type) {
     case 'UPDATE_TIMES':
@@ -37,18 +35,15 @@ function Main() {
     initializeTimes
   );
 
-  // Set page title for accessibility
   useEffect(() => {
     document.title = 'Reserve a Table - Little Lemon Restaurant';
   }, []);
 
-  // Initialize available times
   useEffect(() => {
     const loadInitialTimes = async () => {
       try {
         setIsLoading(true);
         setError(null);
-        // Times are already initialized via useReducer
         setIsLoading(false);
       } catch (err) {
         console.error('Error loading times:', err);
@@ -66,8 +61,6 @@ function Main() {
       const isSuccess = await submitAPI(formData);
 
       if (isSuccess) {
-        // Success notification is shown in BookingForm
-        // Navigate after short delay
         setTimeout(() => {
           navigate('/confirmed', { 
             state: { bookingData: formData }
@@ -79,8 +72,7 @@ function Main() {
       }
     } catch (error) {
       console.error('Booking submission error:', error);
-      // Error notification already shown above
-      throw error; // Re-throw so BookingForm can handle it
+      throw error;
     }
   };
 

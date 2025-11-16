@@ -1,4 +1,3 @@
-// src/components/Specials.js
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Card from './Card';
@@ -24,7 +23,7 @@ function Specials() {
 
         <div className="cards">
           <Card
-            id={1} // ← Add ID
+            id={1}
             img={dish1}
             title="Greek salad"
             price="$12.99"
@@ -32,7 +31,7 @@ function Specials() {
             link="/menu"
           />
           <Card
-            id={2} // ← Add ID
+            id={2}
             img={dish2}
             title="Bruschetta"
             price="$5.99"
@@ -40,7 +39,7 @@ function Specials() {
             link="/menu"
           />
           <Card
-            id={3} // ← Add ID
+            id={3}
             img={dish3}
             title="Lemon Dessert"
             price="$5.00"

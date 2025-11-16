@@ -1,10 +1,8 @@
-// Mock the api module BEFORE any imports
 jest.mock('../api');
 
 import { initializeTimes, updateTimes } from './Main';
 import { fetchAPI } from '../api';
 
-// Set up the mock implementation
 beforeEach(() => {
   fetchAPI.mockReturnValue(["5:00 PM", "6:00 PM", "7:00 PM", "8:00 PM", "9:00 PM"]);
 });

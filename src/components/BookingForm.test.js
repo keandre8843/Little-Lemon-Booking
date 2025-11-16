@@ -3,11 +3,6 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import BookingForm from './BookingForm';
 
-/**
- * STEP 1: HTML5 VALIDATION ATTRIBUTE TESTS
- * These tests verify that the correct HTML5 validation attributes
- * are applied to each form input field
- */
 describe('BookingForm - HTML5 Validation Attributes', () => {
   
   describe('Date Input Field', () => {
@@ -247,10 +242,6 @@ describe('BookingForm - HTML5 Validation Attributes', () => {
   });
 });
 
-/**
- * STEP 2: JAVASCRIPT VALIDATION FUNCTION TESTS
- * These tests verify the valid and invalid states for validation functions
- */
 describe('BookingForm - JavaScript Validation Functions', () => {
   
   describe('Date Validation', () => {
@@ -285,8 +276,7 @@ describe('BookingForm - JavaScript Validation Functions', () => {
       const timeSelect = screen.getByLabelText(/choose time/i);
       const guestsInput = screen.getByLabelText(/number of guests/i);
       const submitButton = screen.getByRole('button', { name: /submit reservation/i });
-      
-      // Set a past date
+
       const pastDate = new Date();
       pastDate.setDate(pastDate.getDate() - 1);
       const pastDateString = `${pastDate.getFullYear()}-${String(pastDate.getMonth() + 1).padStart(2, '0')}-${String(pastDate.getDate()).padStart(2, '0')}`;
@@ -294,8 +284,6 @@ describe('BookingForm - JavaScript Validation Functions', () => {
       fireEvent.change(dateInput, { target: { value: pastDateString } });
       fireEvent.change(timeSelect, { target: { value: '17:00' } });
       fireEvent.change(guestsInput, { target: { value: '2' } });
-      
-      // Submit button should be disabled
       expect(submitButton).toBeDisabled();
     });
 
@@ -309,8 +297,6 @@ describe('BookingForm - JavaScript Validation Functions', () => {
       
       fireEvent.change(timeSelect, { target: { value: '17:00' } });
       fireEvent.change(guestsInput, { target: { value: '2' } });
-      
-      // Submit button should be disabled when date is empty
       expect(submitButton).toBeDisabled();
     });
   });
@@ -337,8 +323,6 @@ describe('BookingForm - JavaScript Validation Functions', () => {
       
       fireEvent.change(dateInput, { target: { value: todayString } });
       fireEvent.change(guestsInput, { target: { value: '2' } });
-      
-      // Submit button should be disabled when time is empty
       expect(submitButton).toBeDisabled();
     });
   });
@@ -373,7 +357,6 @@ describe('BookingForm - JavaScript Validation Functions', () => {
       const guestsInput = screen.getByLabelText(/number of guests/i);
       
       fireEvent.change(guestsInput, { target: { value: '0' } });
-      // Value should remain at default (1) because validation prevents update
       expect(guestsInput.value).toBe('1');
     });
 
@@ -382,7 +365,6 @@ describe('BookingForm - JavaScript Validation Functions', () => {
       const guestsInput = screen.getByLabelText(/number of guests/i);
       
       fireEvent.change(guestsInput, { target: { value: '11' } });
-      // Value should remain at default (1) because validation prevents update
       expect(guestsInput.value).toBe('1');
     });
 
@@ -391,7 +373,6 @@ describe('BookingForm - JavaScript Validation Functions', () => {
       const guestsInput = screen.getByLabelText(/number of guests/i);
       
       fireEvent.change(guestsInput, { target: { value: '-5' } });
-      // Value should remain at default (1) because validation prevents update
       expect(guestsInput.value).toBe('1');
     });
 
@@ -410,8 +391,6 @@ describe('BookingForm - JavaScript Validation Functions', () => {
       fireEvent.change(dateInput, { target: { value: todayString } });
       fireEvent.change(timeSelect, { target: { value: '17:00' } });
       fireEvent.change(guestsInput, { target: { value: '' } });
-      
-      // Submit button should be disabled when guests is empty
       expect(submitButton).toBeDisabled();
     });
   });
@@ -462,8 +441,6 @@ describe('BookingForm - JavaScript Validation Functions', () => {
       fireEvent.change(timeSelect, { target: { value: '17:00' } });
       fireEvent.change(guestsInput, { target: { value: '2' } });
       fireEvent.change(occasionSelect, { target: { value: 'Other' } });
-      
-      // Submit button should be disabled when Other is selected but not specified
       expect(submitButton).toBeDisabled();
     });
 
@@ -487,16 +464,11 @@ describe('BookingForm - JavaScript Validation Functions', () => {
       
       const otherInput = screen.getByLabelText(/please specify your occasion/i);
       fireEvent.change(otherInput, { target: { value: '   ' } });
-      
-      // Submit button should be disabled with only whitespace
       expect(submitButton).toBeDisabled();
     });
   });
 
   describe('Form Submission Integration Tests', () => {
-    // Note: These tests are commented out because form submission validation
-    // happens in the handler, not just at the button level
-    
     test.skip('VALID: should submit form with all valid inputs', () => {
       const mockSubmit = jest.fn();
       window.alert = jest.fn();
@@ -569,11 +541,7 @@ describe('BookingForm - JavaScript Validation Functions', () => {
       
       const form = container.querySelector('form');
       const submitButton = screen.getByRole('button', { name: /submit reservation/i });
-      
-      // Button should be disabled with incomplete form
       expect(submitButton).toBeDisabled();
-      
-      // Try to submit without filling any fields
       fireEvent.submit(form);
       
       expect(mockSubmit).not.toHaveBeenCalled();

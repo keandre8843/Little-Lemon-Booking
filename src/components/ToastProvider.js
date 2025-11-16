@@ -23,7 +23,6 @@ export function ToastProvider({ children }) {
     
     setToasts(prev => [...prev, toast]);
 
-    // Auto-remove after duration
     if (duration > 0) {
       setTimeout(() => {
         removeToast(id);
@@ -31,7 +30,7 @@ export function ToastProvider({ children }) {
     }
 
     return id;
-  }, [removeToast]); // Fixed: Added removeToast dependency
+  }, [removeToast]);
 
   const toast = {
     success: (message, duration) => addToast(message, 'success', duration),
